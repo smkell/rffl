@@ -94,8 +94,8 @@ for(pos in c("QB", "RB", "WR", "TE")) {
 
   key <- paste0("starting.", pos)
   last_starter <- pos_projections[league_rules[key] * league_rules["teams.in.league"],]
-  cpv <- pos_projections$PTS - last_starter$PTS
-  pos_projections <- cbind(pos_projections, CVP = cpv)
+  cvp <- pos_projections$PTS - last_starter$PTS
+  pos_projections <- cbind(pos_projections, CVP = cvp)
   final_projections <- rbind(final_projections, pos_projections)
 }
 
@@ -103,5 +103,5 @@ espn_projections <- final_projections[order(-final_projections$CVP)]
 espn_projections <- subset(espn_projections, select = -c(RNK, `passing.C/A`, passing.C, passing.A))
 
 rm(final_projections, last_starter, pos_projections, attmpt, base_url, column_names,
-   comp, cpv, key, pages, player_names, player_team_pos, pos, positions, team_pos, teams, urls,
+   comp, cvp, key, pages, player_names, player_team_pos, pos, positions, team_pos, teams, urls,
    as.numeric_handle_dash)
